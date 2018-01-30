@@ -1,8 +1,6 @@
 package sk.akademiasovy.tipos;
 
-
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Tipos {
     //pole intov s nazvvom arr
@@ -12,14 +10,14 @@ public class Tipos {
         this.arr = new int[5];
     }
 
-    public int[] getArr() {
-        return arr;
+    public void generateRandom(){
+
+            this.arr=new Random().ints(1,35).distinct().limit(5).toArray();
+            Arrays.sort(this.arr);
+
     }
 
-    public void generateJava8(){
 
-    final int[] arr=new Random().ints(1,35).distinct().limit(5).toArray();
-    }
     public void generate()
     {
         Random random = new Random();
@@ -36,22 +34,23 @@ public class Tipos {
             }
         }
         Arrays.sort(this.arr);
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < i; j++) {
-                while (this.arr[i] == this.arr[j])
-                {
-                    this.arr[i] = random.nextInt(34)+1;
-                }
-            }
-        }
-        Arrays.sort(this.arr);
+
     }
 
     public void printArr(){
+        /*
         for (int i = 0; i < 5; i++) {
             System.out.println(this.arr[i]);
         }
+        */
+        System.out.println(Arrays.toString(this.arr));
     }
+
+    //getter
+    public int[] getArr() {
+        return arr;
+    }
+
 
 
 

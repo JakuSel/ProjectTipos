@@ -17,7 +17,6 @@ public class Tipos {
 
     }
 
-
     public void generate()
     {
         Random random = new Random();
@@ -38,11 +37,7 @@ public class Tipos {
     }
 
     public void printArr(){
-        /*
-        for (int i = 0; i < 5; i++) {
-            System.out.println(this.arr[i]);
-        }
-        */
+
         System.out.println(Arrays.toString(this.arr));
     }
 

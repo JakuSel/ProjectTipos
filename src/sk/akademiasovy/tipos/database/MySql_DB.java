@@ -8,14 +8,15 @@ public class MySql_DB {
     private final String url="jdbc:mysql://localhost:3306/tipos";
     private final String dbName="tipos";
     private final String driver="com.mysql.jdbc.Driver";
-    private final String userName="user1";
+    private final String userName1="user1";
+    private final String userName2="user2";
     private final String password="123456";
     private Connection conn;
 
     public void testConnection(){
         try {
             Class.forName(driver).newInstance();
-            conn= DriverManager.getConnection(url,userName,password);
+            conn= DriverManager.getConnection(url,userName1,password);
             if (conn==null){
                 System.out.println("Connection failed");
             }
@@ -34,9 +35,9 @@ public class MySql_DB {
     public boolean insertBallsIntoTable(int pole[]){
         try{
             Class.forName(driver).newInstance();
-            conn= DriverManager.getConnection(url,userName,password);
+            conn= DriverManager.getConnection(url,userName1,password);
             String cmd="INSERT INTO draw_history(ball1,ball2,ball3,ball4,ball5)values(?,?,?,?,?)";
-            System.out.println("Ready to insert");
+
             PreparedStatement preparedStatement=conn.prepareStatement(cmd);
             preparedStatement.setInt(1,pole[0]);
             preparedStatement.setInt(2,pole[1]);
@@ -45,6 +46,7 @@ public class MySql_DB {
             preparedStatement.setInt(5,pole[4]);
             preparedStatement.executeUpdate();
             conn.close();
+            System.out.println("Database updated");
 
         }
 
@@ -52,6 +54,25 @@ public class MySql_DB {
             System.out.println("Err");
         }
         return true;
+    }
+
+    public void getNewBets(){
+        try {
+            Class.forName(driver).newInstance();
+            conn = DriverManager.getConnection(url, userName2, password);
+            String cmd="SELECT * FROM bets" +
+                    "INNER JOIN bet_details ON bets.id=bet_details.idb" +
+                    "WHERE bets.draw_id IS NULL";
+
+
+        }
+        catch (Exception e){
+            System.out.println("Err:"+e.getMessage());
+        }
+
+
+
+
     }
 
 }

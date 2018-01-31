@@ -18,7 +18,8 @@ public class Main {
 
 
         MySql_DB DB=new MySql_DB();
+
     //    DB.testConnection();
-     //   DB.insertBallsIntoTable(numbers.getArr());
+    //    DB.insertBallsIntoTable(numbers.getArr());
     }
 }

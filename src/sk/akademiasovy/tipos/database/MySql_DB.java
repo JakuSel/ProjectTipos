@@ -3,6 +3,7 @@ package sk.akademiasovy.tipos.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class MySql_DB {
     private final String url="jdbc:mysql://localhost:3306/tipos";
@@ -60,15 +61,23 @@ public class MySql_DB {
         try {
             Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, userName2, password);
-            String cmd="SELECT * FROM bets" +
-                    "INNER JOIN bet_details ON bets.id=bet_details.idb" +
-                    "WHERE bets.draw_id IS NULL";
+            String cmd="SELECT * FROM bets " +
+                    " INNER JOIN bet_details ON  bets.id=bet_details.idb"+
+                    " WHERE bets.draw_id IS NULL;";
+            PreparedStatement preparedStatement=conn.prepareStatement(cmd);
+            ResultSet resultSet=preparedStatement.executeQuery();
 
+            while (resultSet.next()){
+                System.out.println("bet: "+ resultSet.getInt("id")+" user id: "+ resultSet.getInt("idu")+ " date: "+resultSet.getDate("date"));
+                System.out.println("bet details: "+resultSet.getInt("bet1")+" "+resultSet.getInt("bet2")+" "+resultSet.getInt("bet3")+" "+resultSet.getInt("bet4")+" "+resultSet.getInt("bet5"));
+            }
+            conn.close();
 
         }
         catch (Exception e){
             System.out.println("Err:"+e.getMessage());
         }
+
 
 
 

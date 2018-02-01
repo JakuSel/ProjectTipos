@@ -14,12 +14,14 @@ public class Main {
 
 
 
+
         System.out.println("Hello");
 
 
         MySql_DB DB=new MySql_DB();
 
-    //    DB.testConnection();
+        DB.testConnection();
     //    DB.insertBallsIntoTable(numbers.getArr());
+        DB.getNewBets();
     }
 }
